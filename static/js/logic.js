@@ -1,15 +1,3 @@
-// console.log("Hello World")
-// // Store our API endpoint inside queryUrl
-// var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
-// // Perform a GET request to the query URL
-// d3.json(queryUrl).then(function(earthquakeData) {
-//     console.log(earthquakeData)
-
-
-
-
-// });
-
 // Store our API endpoint inside queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
@@ -43,6 +31,7 @@ d3.json(queryUrl).then(function(data) {
         accessToken: API_KEY
     }).addTo(myMap);
 
+    // create data points
     var circleColors= ["lime", "greenyellow", "gold", "orange", "darkorange", "red"]
     var sizeRanges= [0,1,2,3,4,5]
 
@@ -76,53 +65,18 @@ d3.json(queryUrl).then(function(data) {
     }
 
     // // Add legend
-    // var legend = L.control({ position: "bottomright" });
-    // legend.onAdd = function() {
-    //     var div = L.DomUtil.create("div", "info legend");
-    //     var grades = sizeRanges;
-    //     var colors = circleColors;
-    //     // var labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
-    //     var labels=[]
-    //     // var liList= []
-
-
-    //     // Loop through our intervals and generate a label with a colored square for each interval.
-    //     for (var i = 0; i < grades.length; i++) {
-    //         div.innerHTML += "<div class='legend-entry' style='background: " + colors[i] + "'> " +
-    //           grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+" + "</div>");
-    //       }
-    //       return div;
-    //     };
-
-        // Add min & max
-        // var legendInfo = "<h1 style=\"color:red\">Earthquake Magnitude</h1>" +
-        // "<div class=\"labels\">" +
-        // "</div>";
-
-        // div.innerHTML='<div><b>Legend</b></div';
-        // for(var i=0; i <grades.length; i++){
-        //     liList.push("<li style=\"background-color: " + colors[i] + "\label: " + labels[i]+ "\></li>");
-            
-            
-        //     div.innerHTML += "<ul>" + liList.join("") + "</ul>";
-        // }
-        // return div;
-
-        var legend = L.control({position: 'bottomright'});
-        legend.onAdd = function () {
-            var div = L.DomUtil.create('div', 'info legend'),
-            grades = sizeRanges,
-            colors = circleColors;
-            
-            // Loop through our intervals and generate a label with a colored square for each interval.
-            for (var i = 0; i < grades.length; i++) {
-              div.innerHTML += "<div class='legend-entry' style='background: " + colors[i] + "'> " +
-                grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+" + "</div>");
-            }
-            return div;
-          };
-          legend.addTo(myMap);
-    
-    // legend.addTo(map);
-
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function () {
+        var div = L.DomUtil.create('div', 'info legend'),
+        grades = sizeRanges,
+        colors = circleColors;
+        
+        // Loop through our intervals and generate a label with a colored square for each interval.
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML += "<div class='legend-entry' style='background: " + colors[i] + "'> " +
+            grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+" + "</div>");
+        }
+        return div;
+    };
+    legend.addTo(myMap);
 });
