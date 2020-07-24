@@ -28,7 +28,7 @@ d3.json(queryUrl).then(function(data) {
         maxZoom: 18,
         zoomOffset: -1,
         id: "mapbox/light-v10",
-        accessToken: API_KEY
+        accessToken: "pk.eyJ1IjoibG9yZW56YWN1bG90dGEiLCJhIjoiY2tidmdhY2xhMDIzNjJ1bzZjMnl4cTU2ZyJ9.wIHvLZvxF0eQbPLiAtqsng"
     }).addTo(myMap);
 
     // create data points
